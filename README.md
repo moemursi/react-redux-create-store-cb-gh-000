@@ -47,9 +47,10 @@ import counterReducer from './reducers/counterReducer'
 const store = createStore(counterReducer)
 ```
 
-Let's start our server by using `npm start`. Visit http://localhost:8080 in your browser and open up your JavaScript Console. Now, let's play around a little bit by dispatching some actions and logging the state to the console.
+Let's start our server by using `npm start`. Visit http://localhost:8080 in your browser and open up your JavaScript Console. Now, let's play around a little bit by dispatching some actions and start logging the state to the console. In our `src/index.js` add the following code. 
 
 ```javascript
+// src/index.js
 import { createStore } from 'redux';
 import counterReducer from './reducers/counterReducer';
 
