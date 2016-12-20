@@ -12,6 +12,8 @@ Now that we understand how `createStore` works, let's take a look at how we can 
 
 Lucky for us, we don't actually have to build out our own `createStore` function. We can use the built in function from the Redux library to make our store. This will give us all the methods that come built in, plus some other great functionality that we'll use later on.
 
+__This is a code along, so if you would like to follow along, please fork this repo on github.__
+
 To get started, let's add the Redux library to our project.
 
 `npm install --save redux`
@@ -20,48 +22,51 @@ Next, let's define a reducer function in `reducers/counterReducer.js` to pass to
 
 ```javascript
 // src/reducers/counterReducer.js
-export default function counterReducer(state=0, action){
+const counterReducer = (state = 0, action) => {
   switch (action.type) {
     case 'INCREMENT_COUNT':
-      return state + 1;
+      return state + 1
     case 'DECREMENT_COUNT':
-      return state - 1;
+      return state - 1
     case 'RESET_COUNT':
-      return 0;
+      return 0
     default:
-      return state;
+      return state
   }
 }
+
+export default counterReducer
 ```
 
 Finally, let's take a look at the `index.js` file inside of our `src` directory. Here, we'll create our store by importing the `createStore` method from redux, as well as the reducer we just made.
 
 ```javascript
-import { createStore } from 'redux';
-import counterReducer from './reducers/counterReducer';
+import { createStore } from 'redux'
+import counterReducer from './reducers/counterReducer'
 
-const store = createStore(counterReducer);
+const store = createStore(counterReducer)
 ```
 
-Let's start our server by using `npm start`. Visit http://localhost:8080 in your browser and open up your JavaScript Console. Now, let's play around a little bit by dispatching some actions and logging the state to the console.
+Let's start our server by using `npm start`. Visit http://localhost:8080 in your browser and open up your JavaScript Console. Now, let's play around a little bit by dispatching some actions and start logging the state to the console. In our `src/index.js` add the following code. 
 
 ```javascript
+// src/index.js
 import { createStore } from 'redux';
 import counterReducer from './reducers/counterReducer';
 
-const store = createStore(counterReducer);
+const store = createStore(counterReducer)
 
-console.log( store.getState() );
+console.log(store.getState())
 store.dispatch({type: 'INCREMENT_COUNT'})
 store.dispatch({type: 'INCREMENT_COUNT'})
-console.log( store.getState() );
+console.log(store.getState())
 store.dispatch({type: 'DECREMENT_COUNT'})
-console.log( store.getState() );
+console.log(store.getState())
 store.dispatch({type: 'INCREMENT_COUNT'})
 store.dispatch({type: 'INCREMENT_COUNT'})
-console.log( store.getState() );
-store.dispatch({type: 'RESET_COUNT'});
-console.log( store.getState() );
+console.log(store.getState())
+store.dispatch({type: 'RESET_COUNT'})
+console.log(store.getState())
 ```
 
 This will log out:
